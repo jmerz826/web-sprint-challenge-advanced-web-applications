@@ -22,6 +22,7 @@ const App = () => {
           <Route path="/login">
             <Login />
           </Route>
+          {/* Private routes require authentication token. If no token, user will be redirected to '/login' */}
           <PrivateRoute path="/view" component={View} />
           <PrivateRoute path="/logout" component={Logout} />
         </RouteContainer>

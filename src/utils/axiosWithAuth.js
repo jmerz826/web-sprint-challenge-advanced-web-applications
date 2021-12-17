@@ -3,6 +3,7 @@ import axios from 'axios';
 const axiosWithAuth = () => {
     const token = localStorage.getItem('token');
 
+    // Returns axios element containing the storage from local storage and declaring the base URL for CRUD methods.
     return axios.create({
         headers: {
             authorization: token

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import Article from './Article';
 import EditForm from './EditForm';
-import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
 
 const View = (props) => {
@@ -16,6 +15,7 @@ const View = (props) => {
     const { push } = useHistory();
 
     useEffect(() => {
+        //fetch articles from API, then save these articles to local state
         return (
             axiosWithAuth().get('/articles').then(res => {
                 setArticles(res.data);
@@ -26,6 +26,7 @@ const View = (props) => {
     }, [])
 
     const handleDelete = (id) => {
+        // delete deleted article from local state
         axiosWithAuth().delete(`/articles/${id}`).then(res => {
             setArticles(articles.filter(el => el.id !== id));
         }).catch(err => {
@@ -35,7 +36,8 @@ const View = (props) => {
 
     const handleEdit = (article) => {
       axiosWithAuth()
-        .put(`/articles/${editId}`, article)
+          .put(`/articles/${editId}`, article)
+        //   upon completion/submission of an edit, set local state articles to response of put request. Will return all data with updated information. Set editing back to false to hide the editing modal
         .then((res) => {
             setArticles(res.data);
             setEditing(false);

@@ -27,20 +27,25 @@ const Login = (props) => {
     };
 
     const handleLogin = (e) => {
-      e.preventDefault();
+        e.preventDefault();
+        //Create http request using form values. if form values meet fitting credentials, a token, role, and username are returned by the API.
       axios
         .post("http://localhost:5000/api/login", formValues)
         .then((res) => {
             const { role, token, username } = res.data;
+            // Saving the role, token, and username from the API to local storage.
             localStorage.setItem('token', token);
             localStorage.setItem('role', role);
             localStorage.setItem('username', username);
+            //set form back to blank inputs
             setFormValues(initialFormValues);
+            //redirect the user to the '/view' page.
             push('/view');
         })
           .catch((err) => {
               setFormErrors({
                   ...formErrors,
+                  //If there is an error, error value in formErrors will be changed to the present error's message
                   error: err.response.data.error
               });
           });
@@ -71,6 +76,7 @@ const Login = (props) => {
                     />
                 </label>
                 <button onClick={handleLogin} id='submit'>Login</button>
+                {/* p element only renders if there is an error present */}
                 {formErrors.error && <p id='error'>{formErrors.error}</p>}
             </form>
 

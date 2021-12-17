@@ -5,11 +5,14 @@ import { useHistory } from 'react-router-dom';
 const Logout = (props) => {       
     const { push } = useHistory();
 
+    // code exectued when 'logout' is clicked, then immediately mounted
     useEffect(() => {
       axiosWithAuth()
         .post("/logout")
         .then((res) => {
+          // removing authentication token from local storage. Protected routes are now inaccessible, until another successful login
           localStorage.removeItem("token");
+          //redirected to login page
           push("/login");
         }).catch(err => {
             console.error(err);

@@ -14,6 +14,7 @@ const EditForm = (props)=> {
     const [article, setArticle]  = useState(initialArticle);
     const { handleEdit, handleEditCancel, editId } = props;
     
+    //When component mounts, fetch articles from API, store in local state.
     useEffect(() => {
         axiosWithAuth().get(`/articles/${editId}`).then(res => {
             setArticle(res.data);
