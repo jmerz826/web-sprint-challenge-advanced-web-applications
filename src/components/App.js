@@ -1,24 +1,37 @@
 import React from 'react';
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import styled from 'styled-components';
 
 import Header from './Header';
 import BloomHeader from './BloomHeader';
 import Login from './Login';
+import View from './View';
+import Logout from './Logout';
 
 const App = () => {
   return (
     <AppContainer>
-      <BloomHeader/>
-      <Header/>
-      <RouteContainer>
-        <Route exact path="/">
-          <Login/>
-        </Route>          
-      </RouteContainer>
+      <BloomHeader />
+      <Header />
+      <Switch>
+        <RouteContainer>
+          <Route exact path="/">
+            <Login />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/view">
+            <View />
+          </Route>
+          <Route path="/logout">
+            <Logout />
+          </Route>
+        </RouteContainer>
+      </Switch>
     </AppContainer>
-  )
-}
+  );
+};
 
 export default App;
 
