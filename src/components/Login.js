@@ -31,7 +31,6 @@ const Login = (props) => {
       axios
         .post("http://localhost:5000/api/login", formValues)
         .then((res) => {
-            console.log(res);
             const { role, token, username } = res.data;
             localStorage.setItem('token', token);
             localStorage.setItem('role', role);
@@ -40,7 +39,6 @@ const Login = (props) => {
             setFormValues(initialFormValues);
         })
           .catch((err) => {
-              console.error(err);
               setFormErrors({
                   ...formErrors,
                   error: err.response.data.error
