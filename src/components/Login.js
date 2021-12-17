@@ -8,8 +8,14 @@ const initialFormValues = {
         password: ''
 };
 
+const initialFormErrors = {
+    error: ''
+};
+
 const Login = (props) => {
     const [formValues, setFormValues] = useState(initialFormValues);
+    const [formErrors, setFormErrors] = useState(initialFormErrors);
+
     const { push } = useHistory();
 
     const handleChange = (e) => {
@@ -33,7 +39,13 @@ const Login = (props) => {
             push('/view');
             setFormValues(initialFormValues);
         })
-        .catch((err) => console.error(err));
+          .catch((err) => {
+              console.error(err);
+              setFormErrors({
+                  ...formErrors,
+                  error: err.response.data.error
+              });
+          });
     };
 
 
@@ -48,6 +60,7 @@ const Login = (props) => {
                         type='text'
                         value={formValues.username}
                         onChange={handleChange}
+                        id='username'
                     />
                 </label>
                 <label> Password:
@@ -56,10 +69,13 @@ const Login = (props) => {
                         type='password'
                         value={formValues.password}
                         onChange={handleChange}
+                        id='password'
                     />
                 </label>
-                <button onClick={handleLogin}>Login</button>
+                <button onClick={handleLogin} id='submit'>Login</button>
+                {formErrors.error && <p id='error'>{formErrors.error}</p>}
             </form>
+
         </ModalContainer>
     </ComponentContainer>);
 }
