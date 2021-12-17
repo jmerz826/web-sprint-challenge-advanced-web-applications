@@ -118,8 +118,16 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain what a token is used for.
 
+ANSWER: A token is used for authentication. Upon a login with passing credentials, the HTTP post request returns a unique token, which is then saved in local storage (or cookies), and is checked for at various locations in the site.
+
 2. What steps can you take in your web apps to keep your data secure?
+
+ANSWER: You can use encryption, protected routes, and authentication via token requirements throughout the site.
 
 3. Describe how web servers work.
 
+ANSWER: Web servers store and host data, typically from a database. This data is accessible by any device connected to the internet (IP) that has appropriate credentials to access the data. When a successful HTTP request is performed to the web server, the server transmits the appropriate data to the client.
+
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+ANSWER: CRUD, or create, read, update, delete, are all uniquely mapped to HTTP methods. To create, a 'post' request is made. To read, a 'get' request is made. To update, a 'put' request is made. To delete, a fittingly named 'delete' request is made.
