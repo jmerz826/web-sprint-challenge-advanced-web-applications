@@ -70,7 +70,9 @@ test('executes handleDelete when the delete button is pressed', async () => {
     userEvent.click(deleteBtn);
 
     //Event handler should have called mock function
-    expect(mockDelete).toHaveBeenCalled();
+    await waitFor(() => {
+        expect(mockDelete).toHaveBeenCalled();
+    })
 });
 
 //Task List: 

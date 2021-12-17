@@ -26,7 +26,7 @@ const View = (props) => {
     }, [])
 
     const handleDelete = (id) => {
-        // delete deleted article from local state
+        // delete deleted article from API data, update local state to reflect deletion.
         axiosWithAuth().delete(`/articles/${id}`).then(res => {
             setArticles(articles.filter(el => el.id !== id));
         }).catch(err => {
