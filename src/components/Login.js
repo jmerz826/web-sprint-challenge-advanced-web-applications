@@ -35,8 +35,8 @@ const Login = (props) => {
             localStorage.setItem('token', token);
             localStorage.setItem('role', role);
             localStorage.setItem('username', username);
-            push('/view');
             setFormValues(initialFormValues);
+            push('/view');
         })
           .catch((err) => {
               setFormErrors({

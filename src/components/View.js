@@ -37,7 +37,6 @@ const View = (props) => {
       axiosWithAuth()
         .put(`/articles/${editId}`, article)
         .then((res) => {
-            console.log(res);
             setArticles(res.data);
             setEditing(false);
         })
